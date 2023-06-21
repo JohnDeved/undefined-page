@@ -34,7 +34,7 @@ function draw(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
   // reset radius if inside of circle is outside of canvas
   const canvasLongside = Math.max(canvas.width, canvas.height)
   if (radius - thickness > canvasLongside) {
-    thickness = Math.random() * 300 + 150
+    thickness = Math.random() * 200 + 100
     radius = 0
   }
 
@@ -118,6 +118,7 @@ function draw(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
           ctx.fillText(letter, i * letterWidth, j * letterHeight)
           continue
         }
+
         // const opacity = 1 - Math.max((radius - dist) / thickness, 0)
         // non linear opacity quick falloff
         const opacity = 1 - Math.max((radius - dist) / thickness, 0)
