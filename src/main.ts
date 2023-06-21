@@ -25,7 +25,7 @@ let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$+-*/
 let frame = 0
 let radius = 0
 let thickness = 150
-let speed = 3
+let speed = 1
 
 // draw loop
 function draw(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
