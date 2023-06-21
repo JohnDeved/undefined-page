@@ -47,7 +47,7 @@ function draw(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
 
   // draw center text
   ctx.fillStyle = "white"
-  ctx.font = "70px 'VT323', monospace"
+  ctx.font = "70px 'monogram', monospace"
   ctx.shadowBlur = 50
   ctx.shadowColor = `rgba(60, 135, 255, 255)`
   ctx.textBaseline = "middle"
@@ -62,7 +62,7 @@ function draw(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
   const centerTextPos = { x: center.x - centerTextWidth / 2, y: center.y - centerTextHeight / 2 }
   
   ctx.fillStyle = "white"
-  ctx.font = "30px 'VT323', monospace"
+  ctx.font = "30px 'monogram', monospace"
   ctx.textBaseline = "top"
   ctx.textAlign = "left"
   const letterMeasure = ctx.measureText("A")
