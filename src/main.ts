@@ -25,7 +25,7 @@ let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789$+-*/
 let frame = 0
 let radius = 0
 let thickness = 150
-let speed = 1
+let speed = .5
 
 // draw loop
 function draw(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
@@ -49,7 +49,7 @@ function draw(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
   ctx.fillStyle = "white"
   ctx.font = "70px 'VT323', monospace"
   ctx.shadowBlur = 50
-  ctx.shadowColor = `rgba(0, 135, 255, 255)`
+  ctx.shadowColor = `rgba(60, 135, 255, 255)`
   ctx.textBaseline = "middle"
   ctx.textAlign = "center"
   // outside line
@@ -60,7 +60,8 @@ function draw(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
   const centerTextWidth = centerTextMeasure.width
   const centerTextHeight = centerTextMeasure.actualBoundingBoxAscent + centerTextMeasure.actualBoundingBoxDescent
   const centerTextPos = { x: center.x - centerTextWidth / 2, y: center.y - centerTextHeight / 2 }
-
+  
+  ctx.fillStyle = "white"
   ctx.font = "30px 'VT323', monospace"
   ctx.textBaseline = "top"
   ctx.textAlign = "left"
@@ -122,15 +123,18 @@ function draw(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
         const opacity = 1 - Math.max((radius - dist) / thickness, 0)
         const r = Math.floor(255 * (random2 * .5))
         ctx.fillStyle = `rgba(${r}, 135, 245, ${opacity})`
-        ctx.shadowBlur = 50
-        ctx.shadowColor = `rgba(${r}, 135, 255, 255)`
         ctx.fillText(letter, i * letterWidth, j * letterHeight)
 
-        
-        if (dist > radius - 15) {
-          // lighten letters near edge
-          ctx.fillStyle = `rgba(255, 255, 255, ${opacity * .5})`
-          ctx.fillText(letter, i * letterWidth, j * letterHeight)
+
+
+        if (dist > radius - 25) {
+          for (let k = 0; k < 5; k++) {
+            ctx.shadowBlur = 40
+            ctx.shadowColor = `rgba(60, 135, 255, 255)`
+            ctx.fillStyle = `rgba(255, 255, 255, 1)`
+            ctx.fillText(letter, i * letterWidth, j * letterHeight)
+
+          }
         }
 
       } 
