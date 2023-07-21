@@ -129,7 +129,7 @@ function draw(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
 
 
         if (dist > radius - 25) {
-          for (let k = 0; k < 5; k++) {
+          for (let k = 0; k < 3; k++) {
             ctx.shadowBlur = 40
             ctx.shadowColor = `rgba(60, 135, 255, 255)`
             ctx.fillStyle = `rgba(255, 255, 255, 1)`
