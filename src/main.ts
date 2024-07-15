@@ -81,6 +81,7 @@ const draw = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
     for (let j = 0; j < lettersPerCol; j++) {
       let x = i * letterWidth
       let y = j * letterHeight
+
       // Skip drawing characters that overlap with the central text
       if (x + letterWidth > centerTextPos.x && x < centerTextPos.x + centerTextWidth && y + letterHeight > centerTextPos.y && y < centerTextPos.y + centerTextHeight) continue
 
@@ -98,14 +99,23 @@ const draw = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
         y += Math.sin(angle) * (mouseRadius - mouseDist) * 0.05 // Attraction effect with reduced impact
       }
 
-      ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(random2 * 0.1, 0.01)})`
+      // Apply wave distortion effect if within the radius and the thickness
+      if (isInside && dist > radius - thickness) {
+        const angle = Math.atan2(center.y - y, center.x - x)
+        const waveFactor = Math.sin(((dist - (radius - thickness)) / thickness) * Math.PI) // Wave effect
+        const distortion = waveFactor * 15 // Distortion factor
+        x -= Math.cos(angle) * distortion // Adjust position with wave effect
+        y -= Math.sin(angle) * distortion // Adjust position with wave effect
+      }
+
+      ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(random2 * 0.15, 0.01)})`
       ctx.shadowBlur = 0
       ctx.fillText(letter, x, y)
 
       // Draw characters within the radius with different opacity and color
       if (isInside) {
         if (dist < radius - thickness && dist > radius - thickness * 1.5) {
-          ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(random2 * 0.1, 0.01)})`
+          ctx.fillStyle = `rgba(255, 255, 255, ${Math.max(random2 * 0.3, 0.01)})`
           ctx.fillText(letter, x, y)
           continue
         }
